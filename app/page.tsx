@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [name, setName] = useState("");
+  const router = useRouter();
 
   return (
-    <section className="ml-3 px-[4rem] py-[4rem] flex flex-col items-left justify-center text-white">
+    <section className="ml-3 px-[4rem] py-[3rem] flex flex-col items-left justify-center text-white">
 
       <div className="mt-[5rem] flex flex-col items-let justify-center gap-[2rem]">
         <h1 className="text-4xl font-bold mb-4 glow">
@@ -38,7 +40,7 @@ const page = () => {
         <input type="text" placeholder="Enter your name..." value={name} onChange={(e) => setName(e.target.value)} 
           className="border py-5 px-2 rounded-xl max-w-[80%]"
         />
-        <button disabled={!name} onClick={() => {alert(`Hello ${name}`)}}
+        <button disabled={!name} onClick={() => router.push(`/stats?name=${encodeURIComponent(name)}`)}
           className={`border rounded-xl self-start px-[2rem] py-3  
             ${name ? "bg-[#121424] text-white cursor-pointer shadow-md shadow-black" :  "bg-gray-900 text-gray-400 cursor-not-allowed"}`}>
           Start &rarr;
